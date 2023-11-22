@@ -13,6 +13,8 @@ import com.panierdantan.custom_icons.UserIcon
 
 sealed class Destination(val destination: String, val label: String, val icon: ImageVector) {
     object VueBoutiques : Destination("vue_boutiques", "VueBoutiques", Icons.ShopIcon)
+    object GestionBoutiques : Destination("gestion_boutiques", "GestionBoutiques", Icons.Default.Search)
+    object VueBoutique : Destination("vue_boutique", "VueBoutique", Icons.Default.Home)
     object VuePanier : Destination("vue_panier", "VuePanier", Icons.ShoppingBag)
     object VueFavoris : Destination("vue_favoris", "VueFavoris", Icons.FavorisIcon)
     object VueProfil : Destination("vue_profil", "VueProfil", Icons.UserIcon)

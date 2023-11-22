@@ -1,4 +1,4 @@
-package com.panierdantan.screens.shops
+package com.panierdantan.screens.commercant.shops
 
 import androidx.compose.runtime.Composable
 

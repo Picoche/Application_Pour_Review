@@ -25,10 +25,11 @@ import androidx.navigation.compose.rememberNavController
 
 import com.panierdantan.Destination
 import com.panierdantan.R
-import com.panierdantan.screens.shops.MesBoutiques
-import com.panierdantan.screens.shops.MesFavoris
-import com.panierdantan.screens.shops.MonPanier
-import com.panierdantan.screens.shops.MonProfil
+import com.panierdantan.screens.commercant.shops.MesBoutiques
+import com.panierdantan.screens.user.Carte
+import com.panierdantan.screens.user.MesFavoris
+import com.panierdantan.screens.user.MonPanier
+import com.panierdantan.screens.user.MonProfil
 
 
 val unboundedFamily = FontFamily(
@@ -45,13 +46,13 @@ fun HomePage() {
     val currentDestination = navBackStackEntry?.destination
     val destinations = listOf(
         Destination.VueBoutiques,
+        Destination.Carte,
         Destination.VuePanier,
         Destination.VueFavoris,
         Destination.VueProfil
     )
     Scaffold(
         bottomBar = {
-            // if (currentDestination?.route != Destination.Profil.destination)
             BottomNavigation(
                 Modifier
                     .navigationBarsPadding()
@@ -81,6 +82,7 @@ fun HomePage() {
             composable("vue_panier") { MonPanier() }
             composable("vue_favoris") { MesFavoris() }
             composable("vue_profil") { MonProfil() }
+            composable("carte") { Carte() }
         }
     }
 }
