@@ -16,6 +16,7 @@ sealed class Destination(val destination: String, val label: String, val icon: I
     object VuePanier : Destination("vue_panier", "VuePanier", Icons.ShoppingBag)
     object VueFavoris : Destination("vue_favoris", "VueFavoris", Icons.FavorisIcon)
     object VueProfil : Destination("vue_profil", "VueProfil", Icons.UserIcon)
+    object FormCreationBoutique : Destination("form_creation_boutique", "FormCreationBoutique", Icons.Default.Search)
     object Profil : Destination("profil", "Profil", Icons.Default.Home)
     object Carte : Destination("carte", "Carte", Icons.MapIcon)
     object CreationBoutique : Destination("creation_boutique", "CreationBoutique", Icons.Default.Search)
