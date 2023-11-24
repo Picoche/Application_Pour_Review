@@ -25,8 +25,8 @@ import androidx.navigation.compose.rememberNavController
 
 import com.panierdantan.Destination
 import com.panierdantan.R
+import com.panierdantan.screens.commercant.shops.FormCreationBoutiqueView
 import com.panierdantan.screens.commercant.shops.MesBoutiques
-import com.panierdantan.screens.user.Carte
 import com.panierdantan.screens.user.MesFavoris
 import com.panierdantan.screens.user.MonPanier
 import com.panierdantan.screens.user.MonProfil
@@ -83,11 +83,12 @@ fun HomePage() {
             Modifier.padding(innerPadding)
         ) {
             composable("vue_boutiques") {
-                MesBoutiques()
+                MesBoutiques(){ navController.navigate("creation_boutique") }
             }
             composable("vue_panier") { MonPanier() }
             composable("vue_favoris") { MesFavoris() }
             composable("vue_profil") { MonProfil() }
+            composable("creation_boutique") { FormCreationBoutiqueView() }
             //composable("carte") { Carte() }
         }
     }
