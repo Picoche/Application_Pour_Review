@@ -39,6 +39,12 @@ val unboundedFamily = FontFamily(
     Font(R.font.unbounded_bold, FontWeight.Bold)
 )
 
+val robotoFamily = FontFamily(
+    Font(R.font.roboto, FontWeight.Light),
+    Font(R.font.roboto, FontWeight.Normal),
+    Font(R.font.roboto, FontWeight.Medium),
+    Font(R.font.roboto, FontWeight.Bold)
+)
 @Composable
 fun HomePage() {
     val navController = rememberNavController()
@@ -46,7 +52,7 @@ fun HomePage() {
     val currentDestination = navBackStackEntry?.destination
     val destinations = listOf(
         Destination.VueBoutiques,
-        Destination.Carte,
+        //Destination.Carte,
         Destination.VuePanier,
         Destination.VueFavoris,
         Destination.VueProfil
@@ -82,7 +88,7 @@ fun HomePage() {
             composable("vue_panier") { MonPanier() }
             composable("vue_favoris") { MesFavoris() }
             composable("vue_profil") { MonProfil() }
-            composable("carte") { Carte() }
+            //composable("carte") { Carte() }
         }
     }
 }
