@@ -1,12 +1,19 @@
 package com.panierdantan.screens
 
+import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
+import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -16,6 +23,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -25,10 +33,19 @@ import androidx.navigation.compose.rememberNavController
 
 import com.panierdantan.Destination
 import com.panierdantan.R
+import com.panierdantan.app
+import com.panierdantan.atlas_collections.accounts.User
+import com.panierdantan.auth.repositories.SyncRepository
+import com.panierdantan.auth.view_models.LoginAction
+import com.panierdantan.auth.view_models.LoginViewModel
+import com.panierdantan.custom_icons.UserIcon
 import com.panierdantan.screens.shops.MesBoutiques
 import com.panierdantan.screens.shops.MesFavoris
 import com.panierdantan.screens.shops.MonPanier
 import com.panierdantan.screens.shops.MonProfil
+import io.realm.kotlin.annotations.ExperimentalRealmSerializerApi
+import io.realm.kotlin.mongodb.ext.customData
+import io.realm.kotlin.mongodb.ext.customDataAsBsonDocument
 
 
 val unboundedFamily = FontFamily(
@@ -38,8 +55,9 @@ val unboundedFamily = FontFamily(
     Font(R.font.unbounded_bold, FontWeight.Bold)
 )
 
+@OptIn(ExperimentalRealmSerializerApi::class)
 @Composable
-fun HomePage() {
+fun HomePage(loginViewModel: LoginViewModel) {
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
@@ -49,7 +67,39 @@ fun HomePage() {
         Destination.VueFavoris,
         Destination.VueProfil
     )
+
+    val user = loginViewModel.user.value
+
     Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(8.dp)
+                    ) {
+                        Text(
+                            text = user.email,
+                            color = Color.White,
+                            fontSize = 14.sp,
+                            fontFamily = unboundedFamily,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+                },
+                backgroundColor = Color(0xFF336699),
+                elevation = 0.dp,
+            )
+        },
+        floatingActionButton = {
+            FloatingActionButton(onClick = {
+                loginViewModel.customLogin("hombert.fabien@gmail.com", "Renouvier66")
+                Log.d("user.email : ", user.email)
+            }) {
+                Icon(Icons.UserIcon, contentDescription = "Switch Users")
+            }
+        },
         bottomBar = {
             // if (currentDestination?.route != Destination.Profil.destination)
             BottomNavigation(

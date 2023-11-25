@@ -1,5 +1,6 @@
 package com.panierdantan.auth.repositories
 
+import com.panierdantan.app
 import io.realm.kotlin.mongodb.User as RealmUser
 import com.panierdantan.atlas_collections.accounts.User
 import com.panierdantan.atlas_collections.produits.Produit
@@ -14,36 +15,30 @@ import io.realm.kotlin.mongodb.Credentials
 import io.realm.kotlin.mongodb.sync.SyncConfiguration
 import javax.inject.Singleton
 
-class AuthRepository {
-    @Module
-    @InstallIn(SingletonComponent::class)
-    object AppModule {
+/**
+ * Repository allowing users to create accounts or log in to the app with an existing account.
+ */
+interface AuthRepository {
+    /**
+     * Creates an account with the specified [email] and [password].
+     */
+    suspend fun createAccount(email: String, password: String)
 
-        @Singleton
-        @Provides
-        fun createRealmAppConfig(): App {
-            return App.create("application-0-vlpzl")
-        }
+    /**
+     * Logs in with the specified [email] and [password].
+     */
+    suspend fun login(email: String, password: String)
+}
 
-        @Singleton
-        @Provides
-        suspend fun LogInUser(app: App): RealmUser {
-            val credentials = Credentials.emailPassword("hombert.fabien@gmail.com", "@Renouvier66")
-            return app.login(credentials)
-        }
+/**
+ * [AuthRepository] for authenticating with MongoDB.
+ */
+object RealmAuthRepository : AuthRepository {
+    override suspend fun createAccount(email: String, password: String) {
+        app.emailPasswordAuth.registerUser(email, password)
+    }
 
-        @Singleton
-        @Provides
-        fun provideRealmAppConfig(user: RealmUser): Realm {
-            val config =
-                SyncConfiguration.Builder(user, setOf(User::class, Produit::class, Boutique::class))
-                    .build()
-
-            return Realm.open(config)
-        }
-
-        fun closeThisRealm(realm: Realm) {
-            realm.close()
-        }
+    override suspend fun login(email: String, password: String) {
+        app.login(Credentials.emailPassword(email, password))
     }
 }
