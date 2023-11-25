@@ -88,7 +88,7 @@ fun HomePage() {
             composable("vue_panier") { MonPanier() }
             composable("vue_favoris") { MesFavoris() }
             composable("vue_profil") { MonProfil() }
-            composable("creation_boutique") { FormCreationBoutiqueView() }
+            composable("creation_boutique") { FormCreationBoutiqueView() {navController.navigate("vue_boutiques")} }
             //composable("carte") { Carte() }
         }
     }

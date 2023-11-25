@@ -15,12 +15,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.panierdantan.components.Titre
+import com.panierdantan.components.forms.ButtonForm
 import com.panierdantan.components.forms.ListForm
 import com.panierdantan.components.forms.TextForm
 
 
 @Composable
-fun FormCreationBoutiqueView() {
+fun FormCreationBoutiqueView(onClick: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -58,6 +59,10 @@ fun FormCreationBoutiqueView() {
                 }
                 item {
                     TextForm("Téléphone de ma boutique")
+                }
+                item {
+                    Spacer(modifier = Modifier.height(30.dp))
+                    ButtonForm(onClick)
                 }
             }
         }
