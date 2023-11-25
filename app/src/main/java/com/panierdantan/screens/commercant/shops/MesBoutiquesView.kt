@@ -26,7 +26,7 @@ val unboundedFamily = FontFamily(
 )
 
 @Composable
-fun MesBoutiques(onClick: () -> Unit) {
+fun MesBoutiquesView(onClickAdd: () -> Unit, onClickBoutique:() -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -46,10 +46,10 @@ fun MesBoutiques(onClick: () -> Unit) {
                     verticalArrangement = Arrangement.spacedBy(20.dp)
                 ) {
                     items(2) {
-                        CardBoutique()
+                        CardBoutique(onClickBoutique)
                     }
                     item {
-                        ButtonAdd(onClick)
+                        ButtonAdd(onClickAdd)
                     }
                 }
             }

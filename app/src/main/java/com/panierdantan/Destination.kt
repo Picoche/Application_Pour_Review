@@ -21,4 +21,5 @@ sealed class Destination(val destination: String, val label: String, val icon: I
     object Profil : Destination("profil", "Profil", Icons.Default.Home)
     object Carte : Destination("carte", "Carte", Icons.MapIcon)
     object CreationBoutique : Destination("creation_boutique", "CreationBoutique", Icons.Default.Search)
+    object vueDetailBoutique : Destination("detail_boutique", "VueDetailBoutiques", Icons.Default.Search)
 }

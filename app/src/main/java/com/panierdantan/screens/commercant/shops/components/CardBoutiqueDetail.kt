@@ -1,5 +1,6 @@
 package com.panierdantan.screens.commercant.shops.components
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -16,10 +17,11 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Card
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -35,29 +37,29 @@ import com.panierdantan.R
 import com.panierdantan.screens.commercant.shops.unboundedFamily
 import com.panierdantan.screens.robotoFamily
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CardBoutique(onClickBoutique: () -> Unit) {
+fun CardBoutiqueDetail(onClick: ()-> Unit) {
     Box(modifier = Modifier.fillMaxSize()) {
         Card(
-            onClick = {onClickBoutique ()},
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(0.dp)
         ) {
+
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(Color(0xff336699))
+                    .padding(top = 20.dp)
             ) {
                 // Image à gauche
                 Image(
                     painter = painterResource(id = R.drawable.boutique),
                     contentDescription = null,
                     modifier = Modifier
-                        .padding(start= 10.dp,top=10.dp,bottom=10.dp)
+                        .padding(start = 10.dp, top = 15.dp)
                         .height(170.dp)
-                        .width(100.dp)
+                        .width(150.dp)
                         .clip(RoundedCornerShape(8.dp)) // Arrondir les coins de l'image
                         .border(1.dp, Color.Black, shape = RoundedCornerShape(8.dp))
                 )
@@ -75,10 +77,15 @@ fun CardBoutique(onClickBoutique: () -> Unit) {
                         color = Color(0xffffffff),
                         fontSize = 18.sp
                     )
-                    Column(horizontalAlignment = Alignment.End, modifier = Modifier.fillMaxSize().padding(end = 10.dp)) {
+                    Column(
+                        horizontalAlignment = Alignment.End,
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(end = 10.dp)
+                    ) {
                         Text(
                             text = "12 rue François Thomières",
-                            textAlign = TextAlign.Justify,
+                            textAlign = TextAlign.End,
                             fontFamily = robotoFamily,
                             fontWeight = FontWeight.Bold,
                             color = Color(0xffffffff),
@@ -135,6 +142,29 @@ fun CardBoutique(onClickBoutique: () -> Unit) {
                 }
             }
         }
-    }
+        Box(
+            modifier = Modifier
+                .align(Alignment.TopEnd)
+                .padding(1.dp)
+                .size(28.dp)
+                .border(1.dp, Color.White, shape = CircleShape)
 
+        ) {
+            IconButton(
+                onClick = {
+                    onClick()
+                },
+                modifier = Modifier
+                    .padding(4.dp)
+                    .size(20.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Close,
+                    contentDescription = null,
+                    tint = Color.White
+                )
+            }
+        }
+
+    }
 }

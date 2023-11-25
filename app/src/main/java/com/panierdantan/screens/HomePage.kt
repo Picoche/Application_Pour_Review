@@ -25,8 +25,9 @@ import androidx.navigation.compose.rememberNavController
 
 import com.panierdantan.Destination
 import com.panierdantan.R
+import com.panierdantan.screens.commercant.shops.DetailBoutiquesView
 import com.panierdantan.screens.commercant.shops.FormCreationBoutiqueView
-import com.panierdantan.screens.commercant.shops.MesBoutiques
+import com.panierdantan.screens.commercant.shops.MesBoutiquesView
 import com.panierdantan.screens.user.MesFavoris
 import com.panierdantan.screens.user.MonPanier
 import com.panierdantan.screens.user.MonProfil
@@ -45,6 +46,7 @@ val robotoFamily = FontFamily(
     Font(R.font.roboto, FontWeight.Medium),
     Font(R.font.roboto, FontWeight.Bold)
 )
+
 @Composable
 fun HomePage() {
     val navController = rememberNavController()
@@ -83,12 +85,30 @@ fun HomePage() {
             Modifier.padding(innerPadding)
         ) {
             composable("vue_boutiques") {
-                MesBoutiques(){ navController.navigate("creation_boutique") }
+                MesBoutiquesView(
+                    onClickAdd = { navController.navigate("creation_boutique") },
+                    onClickBoutique = { navController.navigate("detail_boutique") }
+                )
             }
+            composable("creation_boutique") {
+                FormCreationBoutiqueView() {
+                    navController.navigate(
+                        "vue_boutiques"
+                    )
+                }
+            }
+            composable("detail_boutique"){
+                DetailBoutiquesView(){
+                    navController.navigate(
+                        "vue_boutiques"
+                    )
+                }
+            }
+
             composable("vue_panier") { MonPanier() }
             composable("vue_favoris") { MesFavoris() }
             composable("vue_profil") { MonProfil() }
-            composable("creation_boutique") { FormCreationBoutiqueView() {navController.navigate("vue_boutiques")} }
+
             //composable("carte") { Carte() }
         }
     }

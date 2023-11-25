@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.graphics.Color.Companion.White
 
 @Composable
-fun ButtonAdd(onClick: () -> Unit) {
+fun ButtonAdd(onClickAdd: () -> Unit) {
     Box(
         modifier = Modifier.fillMaxSize().padding(top=50.dp),
         contentAlignment = Alignment.Center
@@ -34,7 +34,7 @@ fun ButtonAdd(onClick: () -> Unit) {
         ) {
             // Bouton bleu
             Button(
-                onClick = { onClick() },
+                onClick = { onClickAdd() },
                 modifier = Modifier.size(75.dp),
                 colors = ButtonDefaults.buttonColors(backgroundColor = White),
                 shape = CircleShape
