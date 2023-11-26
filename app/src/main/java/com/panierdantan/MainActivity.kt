@@ -9,13 +9,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.ui.Modifier
-import com.panierdantan.auth.repositories.RealmSyncRepository
-import com.panierdantan.auth.repositories.SyncRepository
 import com.panierdantan.auth.view_models.LoginViewModel
 import com.panierdantan.screens.HomePage
 import com.panierdantan.ui.theme.PanierDAntanTheme
-import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.HiltAndroidApp
 import io.realm.kotlin.mongodb.App
 import io.realm.kotlin.mongodb.AppConfiguration
 
@@ -27,6 +23,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         app = App.create(
             AppConfiguration.Builder(getString(R.string.realm_app_id))
+                .appName(getString(R.string.app_name))
+                .baseUrl(getString(R.string.realm_base_url))
                 .build())
         setContent {
             val viewModel = LoginViewModel()

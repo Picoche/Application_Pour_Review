@@ -153,15 +153,7 @@ class LoginViewModel : ViewModel() {
                         "Connexion réussie."
                     )
                 )
-                try {
-                    Log.d("test", "${app.currentUser}")
-                    val customUserData = app.currentUser?.customData<User>() ?: User()
-                    Log.d("Custom User Data:", app.currentUser!!.customData<User>().toString())
-                    _user.value = customUserData
-                } catch (e: Exception) {
-                    // Log or print the exception to identify the issue
-                    e.printStackTrace()
-                }
+                _user.value = app.currentUser!!.customData<User>()!!
             }.onFailure { ex: Throwable ->
                 _state.value = state.value.copy(enabled = true)
                 val message = when (ex) {

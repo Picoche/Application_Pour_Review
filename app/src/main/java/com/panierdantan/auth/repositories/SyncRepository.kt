@@ -1,5 +1,6 @@
 package com.panierdantan.auth.repositories
 
+import android.util.Log
 import com.panierdantan.app
 import com.panierdantan.atlas_collections.produits.Produit
 import com.panierdantan.atlas_collections.shops.Boutique
@@ -101,6 +102,7 @@ class RealmSyncRepository(
             }
             .errorHandler { session: SyncSession, error: SyncException ->
                 onSyncError.invoke(session, error)
+                Log.d("RealmSyncRepository", "Sync error: $error")
             }
             .waitForInitialRemoteData()
             .build()
@@ -134,8 +136,6 @@ class RealmSyncRepository(
 
     override suspend fun addShop(boutique: Boutique) {
         val shop = Boutique().apply {
-            boutique.adresse
-            boutique.produits
         }
         realm.write {
             copyToRealm(shop)

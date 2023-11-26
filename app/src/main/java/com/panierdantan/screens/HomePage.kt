@@ -95,7 +95,6 @@ fun HomePage(loginViewModel: LoginViewModel) {
         floatingActionButton = {
             FloatingActionButton(onClick = {
                 loginViewModel.customLogin("hombert.fabien@gmail.com", "Renouvier66")
-                Log.d("user.email : ", user.email)
             }) {
                 Icon(Icons.UserIcon, contentDescription = "Switch Users")
             }
