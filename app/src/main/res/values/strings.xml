@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Panier d\'Antan</string>
+    <string name="realm_app_id">application-0-vlpzl</string>
+    <string name="realm_base_url">https://realm.mongodb.com</string>
 </resources>

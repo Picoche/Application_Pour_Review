@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlinx-serialization")
 }
 
 android {
@@ -30,11 +31,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
@@ -74,4 +75,7 @@ dependencies {
     implementation("io.realm.kotlin:library-base:1.11.0")
     implementation("io.realm.kotlin:library-sync:1.11.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.2")
 }
