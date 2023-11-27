@@ -101,11 +101,14 @@ fun HomePage() {
                 }
             }
             composable("detail_boutique"){
-                DetailBoutiquesView(){
-                    navController.navigate(
-                        "vue_boutiques"
-                    )
-                }
+                DetailBoutiquesView(
+                    onClickQrCode = { navController.navigate("scanner") },
+                    onClick = {
+                        navController.navigate(
+                            "vue_boutiques"
+                        )
+                    }
+                )
             }
             composable("scanner"){
                 ScanneurQrCodeView()

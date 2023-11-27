@@ -42,7 +42,7 @@ fun MesBoutiquesView(onClickAdd: () -> Unit, onClickBoutique:() -> Unit, onClick
             Titre("Mes Boutiques")
             Box(
                 modifier = Modifier
-                    .padding(10.dp)
+                    .padding(top = 10.dp, start = 10.dp, end = 10.dp, bottom = 0.dp)
                     .fillMaxSize()
             ) {
                 LazyColumn(
