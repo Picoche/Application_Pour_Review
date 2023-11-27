@@ -28,6 +28,7 @@ import com.panierdantan.R
 import com.panierdantan.screens.commercant.shops.DetailBoutiquesView
 import com.panierdantan.screens.commercant.shops.FormCreationBoutiqueView
 import com.panierdantan.screens.commercant.shops.MesBoutiquesView
+import com.panierdantan.screens.commercant.shops.ScanneurQrCodeView
 import com.panierdantan.screens.user.MesFavoris
 import com.panierdantan.screens.user.MonPanier
 import com.panierdantan.screens.user.MonProfil
@@ -87,7 +88,9 @@ fun HomePage() {
             composable("vue_boutiques") {
                 MesBoutiquesView(
                     onClickAdd = { navController.navigate("creation_boutique") },
-                    onClickBoutique = { navController.navigate("detail_boutique") }
+                    onClickBoutique = { navController.navigate("detail_boutique") },
+                    onClickQrCode = { navController.navigate("scanner") }
+
                 )
             }
             composable("creation_boutique") {
@@ -103,6 +106,9 @@ fun HomePage() {
                         "vue_boutiques"
                     )
                 }
+            }
+            composable("scanner"){
+                ScanneurQrCodeView()
             }
 
             composable("vue_panier") { MonPanier() }
