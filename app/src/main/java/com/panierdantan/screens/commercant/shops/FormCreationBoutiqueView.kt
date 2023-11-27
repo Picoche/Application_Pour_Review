@@ -62,7 +62,7 @@ fun FormCreationBoutiqueView(onClick: () -> Unit) {
                 }
                 item {
                     Spacer(modifier = Modifier.height(30.dp))
-                    ButtonForm(onClick)
+                    ButtonForm(onClick, "Créer")
                 }
             }
         }

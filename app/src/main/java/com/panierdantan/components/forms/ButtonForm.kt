@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun ButtonForm(onClick: () -> Unit) {
+fun ButtonForm(onClick: () -> Unit, text: String) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -28,9 +28,10 @@ fun ButtonForm(onClick: () -> Unit) {
             shape = RoundedCornerShape(16.dp)
         ) {
             Text(
-                text = "Créer ma boutique",
+                text = text,
                 fontSize = 16.sp,
-                color = Color.Black
+                color = Color.Black,
+                modifier = Modifier.padding(start = 20.dp, end = 20.dp)
             )
         }
     }
