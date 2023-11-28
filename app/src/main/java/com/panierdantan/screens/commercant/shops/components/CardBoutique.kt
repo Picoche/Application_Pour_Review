@@ -79,7 +79,7 @@ fun CardBoutique(onClickBoutique: () -> Unit) {
                     Column(horizontalAlignment = Alignment.End, modifier = Modifier.fillMaxSize().padding(end = 10.dp)) {
                         Text(
                             text = "12 rue François Thomières",
-                            textAlign = TextAlign.Justify,
+                            textAlign = TextAlign.End,
                             fontFamily = robotoFamily,
                             fontWeight = FontWeight.Bold,
                             color = Color(0xffffffff),

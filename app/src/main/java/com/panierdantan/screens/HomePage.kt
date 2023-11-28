@@ -26,7 +26,9 @@ import androidx.navigation.compose.rememberNavController
 import com.panierdantan.Destination
 import com.panierdantan.R
 import com.panierdantan.screens.commercant.shops.DetailBoutiquesView
+import com.panierdantan.screens.commercant.shops.FormAjoutProduitView
 import com.panierdantan.screens.commercant.shops.FormCreationBoutiqueView
+import com.panierdantan.screens.commercant.shops.FormModificationBoutiqueView
 import com.panierdantan.screens.commercant.shops.MesBoutiquesView
 import com.panierdantan.screens.commercant.shops.ScanneurQrCodeView
 import com.panierdantan.screens.user.MesFavoris
@@ -107,13 +109,26 @@ fun HomePage() {
                         navController.navigate(
                             "vue_boutiques"
                         )
-                    }
+                    },
+                    onClickAjoutProduit = { navController.navigate("ajout_produit")},
+                    onClickModifBoutique = { navController.navigate("modif_boutique") }
                 )
             }
             composable("scanner"){
                 ScanneurQrCodeView()
             }
-
+            composable("ajout_produit"){
+                FormAjoutProduitView(
+                    onClick = {
+                        navController.navigate(
+                            "detail_boutique"
+                        )
+                    }
+                )
+            }
+            composable("modif_boutique"){
+                FormModificationBoutiqueView()
+            }
             composable("vue_panier") { MonPanier() }
             composable("vue_favoris") { MesFavoris() }
             composable("vue_profil") { MonProfil() }

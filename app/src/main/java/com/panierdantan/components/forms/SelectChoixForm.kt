@@ -1,5 +1,7 @@
 package com.panierdantan.components.forms
 
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import android.graphics.Color
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -13,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.Checkbox
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.Icon
@@ -24,8 +27,8 @@ import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -37,11 +40,11 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-
 @Composable
-fun ListForm(label: String, options: List<String>) {
+fun SelectChoixForm(label:String){
     var expanded by remember { mutableStateOf(false) }
-    var selectedOption by remember { mutableStateOf("") }
+    val options = listOf("Label Rouge", "AOC", "AOP", "Bio")
+    val selectedOptions = remember { mutableStateListOf<String>() }
 
     Column(
         modifier = Modifier
@@ -49,8 +52,6 @@ fun ListForm(label: String, options: List<String>) {
             .padding(12.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        var text by remember { mutableStateOf("") }
-
         Box(
             modifier = Modifier.fillMaxWidth(),
             contentAlignment = Alignment.CenterStart
@@ -62,7 +63,7 @@ fun ListForm(label: String, options: List<String>) {
                     .border(
                         width = 1.dp,
                         color = androidx.compose.ui.graphics.Color.Black,
-                        shape = MaterialTheme.shapes.extraSmall
+                        shape = MaterialTheme.shapes.small
                     )
                     .padding(horizontal = 16.dp, vertical = 18.dp)
             ) {
@@ -70,20 +71,18 @@ fun ListForm(label: String, options: List<String>) {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween,
                     modifier = Modifier.fillMaxWidth()
-                ){
+                ) {
                     Text(
-                    text = if (selectedOption.isNotEmpty()) selectedOption else label,
-                    color = androidx.compose.ui.graphics.Color.Black,
-                    style = TextStyle(fontSize = 16.sp)
-                )
+                        text = if (selectedOptions.isNotEmpty()) selectedOptions.joinToString(", ") else label,
+                        color = androidx.compose.ui.graphics.Color.Black,
+                        style = TextStyle(fontSize = 16.sp)
+                    )
                     Icon(
                         imageVector = Icons.Default.ArrowDropDown,
                         contentDescription = null,
                         tint = androidx.compose.ui.graphics.Color.Black
                     )
                 }
-
-
             }
 
             DropdownMenu(
@@ -94,11 +93,29 @@ fun ListForm(label: String, options: List<String>) {
                 options.forEach { option ->
                     DropdownMenuItem(
                         onClick = {
-                            selectedOption = option
-                            expanded = false
+                            if (selectedOptions.contains(option)) {
+                                selectedOptions.remove(option)
+                            } else {
+                                selectedOptions.add(option)
+                            }
                         }
                     ) {
-                        Text(text = option)
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+                        ) {
+                            Checkbox(
+                                checked = selectedOptions.contains(option),
+                                onCheckedChange = { isChecked ->
+                                    if (isChecked) {
+                                        selectedOptions.add(option)
+                                    } else {
+                                        selectedOptions.remove(option)
+                                    }
+                                }
+                            )
+                            Text(text = option, modifier = Modifier.padding(start = 8.dp))
+                        }
                     }
                 }
             }

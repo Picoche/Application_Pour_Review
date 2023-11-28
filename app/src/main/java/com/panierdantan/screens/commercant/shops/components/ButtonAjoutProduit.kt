@@ -1,4 +1,4 @@
-package com.panierdantan.components.forms
+package com.panierdantan.screens.commercant.shops.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun ButtonForm(onClick: () -> Unit, text: String) {
+fun ButtonAjoutProduit(onClickAjoutProduit: () -> Unit, text: String) {
     Column(
         modifier = Modifier
             .fillMaxWidth(),
@@ -23,7 +23,7 @@ fun ButtonForm(onClick: () -> Unit, text: String) {
     ) {
         Button(
             modifier = Modifier.padding(5.dp),
-            onClick = { onClick() },
+            onClick = { onClickAjoutProduit() },
             colors = ButtonDefaults.buttonColors(Color(0xff85FDFF)),
             shape = RoundedCornerShape(100.dp)
         ) {
