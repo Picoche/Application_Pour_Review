@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.panierdantan.screens.commercant.shops.components.ButtonAjoutProduit
 import com.panierdantan.screens.commercant.shops.components.InfoBoutique
+import com.panierdantan.screens.commercant.shops.components.MesProduits
 
 @Composable
 fun DetailBoutiquesView(onClick: () -> Unit, onClickQrCode:() -> Unit, onClickAjoutProduit: () -> Unit, onClickModifBoutique:() -> Unit) {
@@ -47,16 +48,14 @@ fun DetailBoutiquesView(onClick: () -> Unit, onClickQrCode:() -> Unit, onClickAj
 
             LazyVerticalGrid(
                 GridCells.Fixed(2),
-                verticalArrangement = Arrangement.spacedBy(12.dp), // Réduction de l'espace entre les items
+                verticalArrangement = Arrangement.spacedBy(1.dp), // Réduction de l'espace entre les items
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxWidth()
-                    .padding(top = 60.dp)
+                    .padding(top = 30.dp)
             ) {
                 items(8) {
-                    Text(
-                        text = "Manque code de tony"
-                    )
+                    MesProduits()
                 }
             }
 
