@@ -16,20 +16,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.panierdantan.components.Titre
-import com.panierdantan.components.forms.ButtonForm
-import com.panierdantan.components.forms.ListForm
 import com.panierdantan.components.forms.TextForm
 
-
 @Composable
-fun FormCreationBoutiqueView(onClick: () -> Unit) {
+fun FormModificationBoutiqueView () {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(12.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Titre("Création de ma boutique")
+        Titre("Détails du commerce")
         Box(
             modifier = Modifier
                 .padding(10.dp)
@@ -40,34 +37,13 @@ fun FormCreationBoutiqueView(onClick: () -> Unit) {
                 verticalArrangement = Arrangement.spacedBy(1.dp)
             ) {
                 item {
-                    TextForm("Nom de ma boutique")
-                }
-                item {
-                    TextForm("Adresse de ma boutique")
-                }
-
-                item {
-                    Spacer(modifier = Modifier.height(7.dp))
-                    ListForm(
-                        label = "Type de boutique",
-                        options = listOf("Boucherie", "Epicerie", "Boulangerie")
-                    )
-                }
-                item {
-                    TextForm("Horaires de ma boutique")
-                }
-                item {
-                    TextForm("Photo de ma boutique")
-                }
-                item {
-                    TextForm("Téléphone de ma boutique")
+                    TextForm("Nom du produit")
                 }
                 item {
                     Spacer(modifier = Modifier.height(50.dp))
-                    ButtonForm(onClick, "Créer")
+                    //ButtonForm(onClick, "Créer")
                 }
             }
         }
-
     }
 }

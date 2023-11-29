@@ -23,4 +23,8 @@ sealed class Destination(val destination: String, val label: String, val icon: I
     object Carte : Destination("carte", "Carte", Icons.MapIcon)
     object CreationBoutique : Destination("creation_boutique", "CreationBoutique", Icons.Default.Search)
     object vueDetailBoutique : Destination("detail_boutique", "VueDetailBoutiques", Icons.Default.Search)
+    object vueScanneurQrCode : Destination("scanner", "vueScanneurQrCode", Icons.Default.Search)
+    object ModificationBoutique : Destination("modif_boutique", "ModificationBoutique", Icons.Default.Search)
+    object AjoutProduit : Destination("ajout_produit", "AjoutProduit", Icons.Default.Search)
+
 }

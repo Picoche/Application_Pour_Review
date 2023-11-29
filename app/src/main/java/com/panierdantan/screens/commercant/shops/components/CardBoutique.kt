@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -78,20 +79,32 @@ fun CardBoutique(onClickBoutique: () -> Unit) {
                     Column(horizontalAlignment = Alignment.End, modifier = Modifier.fillMaxSize().padding(end = 10.dp)) {
                         Text(
                             text = "12 rue François Thomières",
-                            textAlign = TextAlign.Justify,
+                            textAlign = TextAlign.End,
                             fontFamily = robotoFamily,
                             fontWeight = FontWeight.Bold,
                             color = Color(0xffffffff),
                             fontSize = 16.sp
                         )
-                        Text(
-                            text = "05 63 72 62 80",
-                            textAlign = TextAlign.End,
-                            fontFamily = robotoFamily,
-                            fontWeight = FontWeight.Bold,
-                            color = Color(0xffffffff),
-                            fontSize = 14.sp
-                        )
+
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.End
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Phone, // Icône de téléphone
+                                contentDescription = "Icon phone",
+                                tint = Color.White
+                            )
+                            Text(
+                                text = "05 63 72 62 80",
+                                textAlign = TextAlign.End,
+                                fontFamily = robotoFamily,
+                                fontWeight = FontWeight.Bold,
+                                color = Color.White,
+                                fontSize = 14.sp,
+                                modifier = Modifier.padding(start = 4.dp) // Ajoute un espacement entre l'icône et le texte
+                            )
+                        }
                         Text(
                             text = "ouvert du lundi au samedi",
                             textAlign = TextAlign.End,

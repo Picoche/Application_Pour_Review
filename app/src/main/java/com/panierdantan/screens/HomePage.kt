@@ -44,8 +44,11 @@ import io.realm.kotlin.annotations.ExperimentalRealmSerializerApi
 import io.realm.kotlin.mongodb.ext.customData
 import io.realm.kotlin.mongodb.ext.customDataAsBsonDocument
 import com.panierdantan.screens.commercant.shops.DetailBoutiquesView
+import com.panierdantan.screens.commercant.shops.FormAjoutProduitView
 import com.panierdantan.screens.commercant.shops.FormCreationBoutiqueView
+import com.panierdantan.screens.commercant.shops.FormModificationBoutiqueView
 import com.panierdantan.screens.commercant.shops.MesBoutiquesView
+import com.panierdantan.screens.commercant.shops.ScanneurQrCodeView
 import com.panierdantan.screens.user.MesFavoris
 import com.panierdantan.screens.user.MonPanier
 import com.panierdantan.screens.user.MonProfil
@@ -130,7 +133,9 @@ fun HomePage(loginViewModel: LoginViewModel) {
             composable("vue_boutiques") {
                 MesBoutiquesView(
                     onClickAdd = { navController.navigate("creation_boutique") },
-                    onClickBoutique = { navController.navigate("detail_boutique") }
+                    onClickBoutique = { navController.navigate("detail_boutique") },
+                    onClickQrCode = { navController.navigate("scanner") }
+
                 )
             }
             composable("creation_boutique") {
@@ -141,13 +146,32 @@ fun HomePage(loginViewModel: LoginViewModel) {
                 }
             }
             composable("detail_boutique"){
-                DetailBoutiquesView(){
-                    navController.navigate(
-                        "vue_boutiques"
-                    )
-                }
+                DetailBoutiquesView(
+                    onClickQrCode = { navController.navigate("scanner") },
+                    onClick = {
+                        navController.navigate(
+                            "vue_boutiques"
+                        )
+                    },
+                    onClickAjoutProduit = { navController.navigate("ajout_produit")},
+                    onClickModifBoutique = { navController.navigate("modif_boutique") }
+                )
             }
-
+            composable("scanner"){
+                ScanneurQrCodeView()
+            }
+            composable("ajout_produit"){
+                FormAjoutProduitView(
+                    onClick = {
+                        navController.navigate(
+                            "detail_boutique"
+                        )
+                    }
+                )
+            }
+            composable("modif_boutique"){
+                FormModificationBoutiqueView()
+            }
             composable("vue_panier") { MonPanier() }
             composable("vue_favoris") { MesFavoris() }
             composable("vue_profil") { MonProfil() }
