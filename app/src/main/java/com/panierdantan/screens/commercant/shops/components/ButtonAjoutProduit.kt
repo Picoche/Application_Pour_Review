@@ -15,14 +15,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun ButtonAjoutProduit(onClickAjoutProduit: () -> Unit, text: String) {
+fun ButtonAjoutProduit(onClickAjoutProduit: () -> Unit, text: String, modifier: Modifier) {
     Column(
         modifier = Modifier
             .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Button(
-            modifier = Modifier.padding(5.dp),
+            modifier = Modifier.padding(0.dp),
             onClick = { onClickAjoutProduit() },
             colors = ButtonDefaults.buttonColors(Color(0xff85FDFF)),
             shape = RoundedCornerShape(100.dp)

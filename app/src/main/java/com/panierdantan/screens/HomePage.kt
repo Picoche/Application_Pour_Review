@@ -60,7 +60,12 @@ val unboundedFamily = FontFamily(
     Font(R.font.unbounded_medium, FontWeight.Medium),
     Font(R.font.unbounded_bold, FontWeight.Bold)
 )
-
+val robotoFamily = FontFamily(
+    Font(R.font.roboto, FontWeight.Light),
+    Font(R.font.roboto, FontWeight.Normal),
+    Font(R.font.roboto, FontWeight.Medium),
+    Font(R.font.roboto, FontWeight.Bold)
+)
 @OptIn(ExperimentalRealmSerializerApi::class)
 @Composable
 fun HomePage(loginViewModel: LoginViewModel) {
