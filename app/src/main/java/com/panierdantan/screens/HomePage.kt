@@ -1,6 +1,5 @@
 package com.panierdantan.screens
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -33,16 +32,9 @@ import androidx.navigation.compose.rememberNavController
 
 import com.panierdantan.Destination
 import com.panierdantan.R
-import com.panierdantan.app
-import com.panierdantan.atlas_collections.accounts.User
-import com.panierdantan.auth.repositories.SyncRepository
-import com.panierdantan.auth.view_models.LoginAction
 import com.panierdantan.auth.view_models.LoginViewModel
 import com.panierdantan.custom_icons.UserIcon
-import com.panierdantan.screens.shops.MesBoutiques
 import io.realm.kotlin.annotations.ExperimentalRealmSerializerApi
-import io.realm.kotlin.mongodb.ext.customData
-import io.realm.kotlin.mongodb.ext.customDataAsBsonDocument
 import com.panierdantan.screens.commercant.shops.DetailBoutiquesView
 import com.panierdantan.screens.commercant.shops.FormAjoutProduitView
 import com.panierdantan.screens.commercant.shops.FormCreationBoutiqueView
@@ -52,6 +44,7 @@ import com.panierdantan.screens.commercant.shops.ScanneurQrCodeView
 import com.panierdantan.screens.user.MesFavoris
 import com.panierdantan.screens.user.MonPanier
 import com.panierdantan.screens.user.MonProfil
+import com.panierdantan.screens.user.shops.DetailProduitView
 
 
 val unboundedFamily = FontFamily(
@@ -177,7 +170,11 @@ fun HomePage(loginViewModel: LoginViewModel) {
             composable("modif_boutique"){
                 FormModificationBoutiqueView()
             }
-            composable("vue_panier") { MonPanier() }
+            //Faudra changer la route
+            composable("vue_panier") { MonPanier() {navController.navigate("detail_produit")} }
+            composable("detail_produit"){
+                DetailProduitView(onClickAjoutPanier = {navController.navigate("vue_panier")})
+            }
             composable("vue_favoris") { MesFavoris() }
             composable("vue_profil") { MonProfil() }
         }

@@ -27,4 +27,6 @@ sealed class Destination(val destination: String, val label: String, val icon: I
     object ModificationBoutique : Destination("modif_boutique", "ModificationBoutique", Icons.Default.Search)
     object AjoutProduit : Destination("ajout_produit", "AjoutProduit", Icons.Default.Search)
 
+    object DetailProduit : Destination("detail_produit", "DetailProduit", Icons.Default.Search)
+
 }

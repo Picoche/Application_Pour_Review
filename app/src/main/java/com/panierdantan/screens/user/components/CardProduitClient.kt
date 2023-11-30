@@ -1,4 +1,4 @@
-package com.panierdantan.screens.commercant.shops.components
+package com.panierdantan.screens.user.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -24,13 +24,14 @@ import androidx.compose.ui.unit.sp
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun MesProduits() {
+fun CardProduitClient(onClickProduit: () -> Unit) {
     Card(
         modifier = Modifier
             .padding(10.dp)
             .fillMaxWidth(),
         shape = RoundedCornerShape(8.dp),
         elevation = 4.dp,
+        onClick = {onClickProduit()}
     ) {
         Row(
             modifier = Modifier
@@ -79,28 +80,28 @@ fun MesProduits() {
                 }
                 Spacer(modifier = Modifier.height(5.dp))
 
-                    Column(
+                Column(
 
-                    ) {
-                        Row() {
-                            repeat(2) {
-                                Box(
-                                    modifier = Modifier
-                                        .background(
-                                            Color(android.graphics.Color.parseColor("#336699")),
-                                            shape = RoundedCornerShape(20.dp)
-                                        )
-                                        .padding(horizontal = 8.dp)
-                                ) {
-                                    Text(
-                                        text = "bio",
-                                        fontSize = 12.sp,
-                                        color = Color.White
+                ) {
+                    Row() {
+                        repeat(2) {
+                            Box(
+                                modifier = Modifier
+                                    .background(
+                                        Color(android.graphics.Color.parseColor("#336699")),
+                                        shape = RoundedCornerShape(20.dp)
                                     )
-                                }
-                                Spacer(modifier = Modifier.width(5.dp))
+                                    .padding(horizontal = 8.dp)
+                            ) {
+                                Text(
+                                    text = "bio",
+                                    fontSize = 12.sp,
+                                    color = Color.White
+                                )
                             }
+                            Spacer(modifier = Modifier.width(5.dp))
                         }
+                    }
 
 
                 }
