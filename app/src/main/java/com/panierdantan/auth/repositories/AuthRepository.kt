@@ -16,6 +16,11 @@ interface AuthRepository {
      * Logs in with the specified [email] and [password].
      */
     suspend fun login(email: String, password: String)
+
+    /**
+     * Custom login using a payload
+     */
+    suspend fun customLogin(email: String, password: String)
 }
 
 /**
@@ -28,5 +33,16 @@ object RealmAuthRepository : AuthRepository {
 
     override suspend fun login(email: String, password: String) {
         app.login(Credentials.emailPassword(email, password))
+    }
+
+    override suspend fun customLogin(email: String, password: String) {
+        app.login(
+            Credentials.customFunction(
+                payload = mapOf(
+                    "email" to email,
+                    "password" to password
+                )
+            )
+        )
     }
 }

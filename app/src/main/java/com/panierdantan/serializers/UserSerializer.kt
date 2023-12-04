@@ -1,7 +1,7 @@
 package com.panierdantan.serializers
 
 import android.util.Log
-import com.panierdantan.atlas_collections.accounts.User
+import com.panierdantan.models.accounts.User
 import kotlinx.serialization.*
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.descriptors.SerialDescriptor

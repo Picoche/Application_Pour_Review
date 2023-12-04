@@ -143,7 +143,7 @@ class LoginViewModel : ViewModel() {
 
         CoroutineScope(Dispatchers.IO).launch {
             runCatching {
-                app.login(Credentials.customFunction(payload = mapOf("email" to email, "password" to password)))
+                authRepository.customLogin(email, password)
             }.onSuccess {
                 _event.emit(
                     LoginEvent.GoToTasks(
