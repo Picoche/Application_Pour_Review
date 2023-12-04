@@ -21,8 +21,20 @@ open class User(
     var profilePicture: String? = "",
     var pseudo: String = "",
     var adresse: String = "",
-    var roles: Array<String> = arrayOf(),
 
     @Serializable(RealmListKSerializer::class)
-    var boutiques: RealmList<ObjectId> = realmListOf()
-): RealmObject {}
+    var boutiques: RealmList<String> = realmListOf("")
+): RealmObject {
+    constructor() : this(
+        _id = "",
+        email = "",
+        hash = "",
+        realmUserId = "",
+        estCommercant = false,
+        fullName = "",
+        profilePicture = "",
+        pseudo = "",
+        adresse = "",
+        boutiques = realmListOf("")
+    )
+}

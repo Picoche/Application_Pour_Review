@@ -9,8 +9,13 @@ import org.mongodb.kbson.BsonObjectId
 import org.mongodb.kbson.ObjectId
 
 @Serializable
-open class CategoriesBoutique : RealmObject {
+open class CategoriesBoutique(
     @PrimaryKey
-    var _id: String = ""
+    var _id: ObjectId = BsonObjectId(),
     var nom: String = ""
+) : RealmObject {
+    constructor() : this(
+        _id = BsonObjectId(),
+        nom = ""
+    )
 }

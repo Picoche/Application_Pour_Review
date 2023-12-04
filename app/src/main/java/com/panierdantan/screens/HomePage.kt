@@ -1,5 +1,6 @@
 package com.panierdantan.screens
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -32,9 +33,10 @@ import androidx.navigation.compose.rememberNavController
 
 import com.panierdantan.Destination
 import com.panierdantan.R
+import com.panierdantan.repositories.RealmShopRepository
 import com.panierdantan.auth.view_models.LoginViewModel
 import com.panierdantan.custom_icons.UserIcon
-import io.realm.kotlin.annotations.ExperimentalRealmSerializerApi
+import com.panierdantan.models.shops.Boutique
 import com.panierdantan.screens.commercant.shops.DetailBoutiquesView
 import com.panierdantan.screens.commercant.shops.FormAjoutProduitView
 import com.panierdantan.screens.commercant.shops.FormCreationBoutiqueView
@@ -45,6 +47,7 @@ import com.panierdantan.screens.user.MesFavoris
 import com.panierdantan.screens.user.MonPanier
 import com.panierdantan.screens.user.MonProfil
 import com.panierdantan.screens.user.shops.DetailProduitView
+import com.panierdantan.view_models.DataViewModel
 
 
 val unboundedFamily = FontFamily(
@@ -59,9 +62,8 @@ val robotoFamily = FontFamily(
     Font(R.font.roboto, FontWeight.Medium),
     Font(R.font.roboto, FontWeight.Bold)
 )
-@OptIn(ExperimentalRealmSerializerApi::class)
 @Composable
-fun HomePage(loginViewModel: LoginViewModel) {
+fun HomePage(loginViewModel: LoginViewModel, dataViewModel: DataViewModel) {
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
@@ -99,6 +101,7 @@ fun HomePage(loginViewModel: LoginViewModel) {
         floatingActionButton = {
             FloatingActionButton(onClick = {
                 loginViewModel.customLogin("hombert.fabien@gmail.com", "Renouvier66")
+                dataViewModel.addShop(Boutique("", "Beverly Hills"))
             }) {
                 Icon(Icons.UserIcon, contentDescription = "Switch Users")
             }

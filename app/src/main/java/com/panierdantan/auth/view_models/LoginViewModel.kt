@@ -88,7 +88,7 @@ class LoginViewModel : ViewModel() {
         _state.value = state.value.copy(password = password)
     }
 
-    fun createAccount(email: String, password: String) {
+    /*fun createAccount(email: String, password: String) {
         _state.value = state.value.copy(enabled = false)
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -106,7 +106,7 @@ class LoginViewModel : ViewModel() {
                 _event.emit(LoginEvent.ShowMessage(EventSeverity.ERROR, message))
             }
         }
-    }
+    }*/
 
     fun login(email: String, password: String, fromCreation: Boolean = false) {
         if (!fromCreation) {
@@ -114,7 +114,7 @@ class LoginViewModel : ViewModel() {
         }
         CoroutineScope(Dispatchers.IO).launch {
             runCatching {
-                app.login(Credentials.emailPassword(email, password))
+                authRepository.login(email, password)
                 _state.value = state.value.copy(email = email, password = password)
             }.onSuccess {
                 _event.emit(
