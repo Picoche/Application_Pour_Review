@@ -6,7 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.compose.runtime.State
 import com.panierdantan.app
-import com.panierdantan.atlas_collections.accounts.User
+import com.panierdantan.models.accounts.User
 import com.panierdantan.auth.repositories.AuthRepository
 import com.panierdantan.auth.repositories.RealmAuthRepository
 import io.realm.kotlin.annotations.ExperimentalRealmSerializerApi
@@ -20,8 +20,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
-import org.mongodb.kbson.BsonObjectId
-import org.mongodb.kbson.ObjectId
 
 /**
  * Types of UX events triggered by user actions.

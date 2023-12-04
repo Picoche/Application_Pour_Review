@@ -2,12 +2,12 @@ package com.panierdantan.auth.repositories
 
 import android.util.Log
 import com.panierdantan.app
-import com.panierdantan.atlas_collections.produits.Produit
-import com.panierdantan.atlas_collections.shops.Boutique
+import com.panierdantan.models.produits.Produit
+import com.panierdantan.models.shops.Boutique
 import io.realm.kotlin.Realm
 import io.realm.kotlin.ext.query
 import io.realm.kotlin.mongodb.User
-import com.panierdantan.atlas_collections.accounts.User as Utilisateur
+import com.panierdantan.models.accounts.User as Utilisateur
 import io.realm.kotlin.mongodb.exceptions.SyncException
 import io.realm.kotlin.mongodb.subscriptions
 import io.realm.kotlin.mongodb.sync.SyncConfiguration
@@ -19,9 +19,7 @@ import io.realm.kotlin.query.Sort
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.launch
-import kotlin.time.Duration.Companion.seconds
 
 /**
  * Repository for accessing Realm Sync.

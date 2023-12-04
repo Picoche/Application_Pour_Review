@@ -1,4 +1,4 @@
-package com.panierdantan.atlas_collections.shops
+package com.panierdantan.models.shops
 
 import io.realm.kotlin.ext.realmListOf
 import io.realm.kotlin.types.RealmList

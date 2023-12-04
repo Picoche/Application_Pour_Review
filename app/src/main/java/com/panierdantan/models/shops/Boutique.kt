@@ -1,6 +1,6 @@
-package com.panierdantan.atlas_collections.shops
+package com.panierdantan.models.shops
 
-import com.panierdantan.atlas_collections.accounts.User
+import com.panierdantan.models.accounts.User
 import io.realm.kotlin.ext.realmListOf
 import io.realm.kotlin.types.RealmList
 import io.realm.kotlin.types.RealmObject
@@ -8,7 +8,7 @@ import io.realm.kotlin.types.annotations.PrimaryKey
 import kotlinx.serialization.Serializable
 import org.mongodb.kbson.BsonObjectId
 import org.mongodb.kbson.ObjectId
-import com.panierdantan.atlas_collections.produits.Produit as Produits
+import com.panierdantan.models.produits.Produit as Produits
 
 @Serializable
 open class Boutique(

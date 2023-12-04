@@ -1,6 +1,6 @@
-package com.panierdantan.atlas_collections.accounts
+package com.panierdantan.models.accounts
 
-import com.panierdantan.atlas_collections.shops.Boutique
+import com.panierdantan.models.shops.Boutique
 import io.realm.kotlin.ext.realmListOf
 import io.realm.kotlin.serializers.RealmListKSerializer
 import io.realm.kotlin.types.RealmList

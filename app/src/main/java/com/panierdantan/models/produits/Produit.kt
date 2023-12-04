@@ -1,6 +1,6 @@
-package com.panierdantan.atlas_collections.produits
+package com.panierdantan.models.produits
 
-import com.panierdantan.atlas_collections.shops.Boutique
+import com.panierdantan.models.shops.Boutique
 import io.realm.kotlin.ext.realmListOf
 import io.realm.kotlin.types.RealmList
 import io.realm.kotlin.types.RealmObject
