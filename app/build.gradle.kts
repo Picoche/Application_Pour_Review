@@ -71,7 +71,6 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.7.5")
     implementation("androidx.compose.material:material:1.5.4")
     implementation(platform("androidx.compose:compose-bom:2022.10.00"))
-    implementation("com.android.tools.build:gradle:8.0.0")
 
     implementation("io.realm.kotlin:library-base:1.11.0")
     implementation("io.realm.kotlin:library-sync:1.11.0")

@@ -11,23 +11,23 @@ import org.mongodb.kbson.BsonObjectId
 import org.mongodb.kbson.ObjectId
 
 @Serializable
-open class Produit(
+open class Produits(
     @PrimaryKey
-    var _id: String = "",
+    var _id: ObjectId = BsonObjectId(),
     var boutiqueId: Boutique? = null,
     var categorieId: CategoriesProduits? = null,
     var nom: String = "",
-    var disponibilite: Boolean = false,
+    var disponibilite: Boolean? = false,
     var prix: Double = 0.0,
-    var rating: Double = 0.0,
-    var nbOfRating: Int = 0,
+    var rating: Double? = 0.0,
+    var nbOfRating: Int? = 0,
     var isBio: Boolean = false,
 
     @Serializable(RealmListKSerializer::class)
-    var tags: RealmList<String> = realmListOf("")
+    var tags: RealmList<Tags> = realmListOf()
 ): RealmObject {
     constructor() : this(
-        _id = "",
+        _id = BsonObjectId(),
         boutiqueId = null,
         categorieId = null,
         nom = "",
@@ -36,6 +36,6 @@ open class Produit(
         rating = 0.0,
         nbOfRating = 0,
         isBio = false,
-        tags = realmListOf("")
+        tags = realmListOf()
     )
 }
