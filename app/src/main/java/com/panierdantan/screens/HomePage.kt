@@ -48,6 +48,7 @@ import com.panierdantan.screens.user.MonPanier
 import com.panierdantan.screens.user.MonProfil
 import com.panierdantan.screens.user.shops.DetailProduitView
 import com.panierdantan.view_models.DataViewModel
+import org.mongodb.kbson.BsonObjectId
 
 
 val unboundedFamily = FontFamily(
@@ -75,6 +76,7 @@ fun HomePage(loginViewModel: LoginViewModel, dataViewModel: DataViewModel) {
     )
 
     val user = loginViewModel.user.value
+    val shops = dataViewModel.shops
 
     Scaffold(
         topBar = {
@@ -86,7 +88,7 @@ fun HomePage(loginViewModel: LoginViewModel, dataViewModel: DataViewModel) {
                             .padding(8.dp)
                     ) {
                         Text(
-                            text = user.email,
+                            text = shops.toString(),
                             color = Color.White,
                             fontSize = 14.sp,
                             fontFamily = unboundedFamily,
@@ -101,7 +103,8 @@ fun HomePage(loginViewModel: LoginViewModel, dataViewModel: DataViewModel) {
         floatingActionButton = {
             FloatingActionButton(onClick = {
                 loginViewModel.customLogin("hombert.fabien@gmail.com", "Renouvier66")
-                dataViewModel.addShop(Boutique("", "Beverly Hills"))
+                dataViewModel.addShop(Boutique(BsonObjectId(), "Beverly Hills"))
+                dataViewModel.getShops()
             }) {
                 Icon(Icons.UserIcon, contentDescription = "Switch Users")
             }

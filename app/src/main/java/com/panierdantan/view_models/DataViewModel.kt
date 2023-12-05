@@ -16,9 +16,14 @@ class DataViewModel : ViewModel() {
 
     private val shopRepository : RealmShopRepository  = RealmShopRepository()
 
-    fun addShop(boutique: Boutique) {
+     fun addShop(boutique: Boutique) {
         CoroutineScope(Dispatchers.IO).launch {
             shopRepository.addShop(boutique)
+        }
+    }
+    fun getShops() {
+        CoroutineScope(Dispatchers.IO).launch {
+            _shops.addAll(shopRepository.getShopList())
         }
     }
 }

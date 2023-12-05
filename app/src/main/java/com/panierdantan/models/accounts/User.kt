@@ -7,12 +7,13 @@ import io.realm.kotlin.types.RealmList
 import io.realm.kotlin.types.RealmObject
 import io.realm.kotlin.types.annotations.PrimaryKey
 import kotlinx.serialization.Serializable
+import org.mongodb.kbson.BsonObjectId
 import org.mongodb.kbson.ObjectId
 
 @Serializable
 open class User(
     @PrimaryKey
-    var _id: String = "",
+    var _id: ObjectId = BsonObjectId(),
     var email: String = "",
     var hash: String = "",
     var realmUserId: String = "",
@@ -23,10 +24,10 @@ open class User(
     var adresse: String = "",
 
     @Serializable(RealmListKSerializer::class)
-    var boutiques: RealmList<String> = realmListOf("")
+    var boutiques: RealmList<Boutique> = realmListOf()
 ): RealmObject {
     constructor() : this(
-        _id = "",
+        _id = BsonObjectId(),
         email = "",
         hash = "",
         realmUserId = "",
@@ -35,6 +36,6 @@ open class User(
         profilePicture = "",
         pseudo = "",
         adresse = "",
-        boutiques = realmListOf("")
+        boutiques = realmListOf()
     )
 }

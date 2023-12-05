@@ -2,7 +2,7 @@ package com.panierdantan.repositories
 
 import com.panierdantan.app
 import com.panierdantan.models.produits.CategoriesProduits
-import com.panierdantan.models.produits.Produit
+import com.panierdantan.models.produits.Produits
 import com.panierdantan.models.produits.Tags
 import com.panierdantan.models.shops.Boutique
 import com.panierdantan.models.shops.CategoriesBoutique
@@ -13,11 +13,9 @@ import com.panierdantan.models.accounts.User as Utilisateur
 import io.realm.kotlin.mongodb.subscriptions
 import io.realm.kotlin.mongodb.sync.SyncConfiguration
 import io.realm.kotlin.mongodb.syncSession
-import io.realm.kotlin.notifications.ResultsChange
 import io.realm.kotlin.query.Sort
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 /**
@@ -70,13 +68,15 @@ class RealmShopRepository() : ShopSyncRepository {
         config = SyncConfiguration.Builder(
             currentUser, setOf(
                 Utilisateur::class,
-                Produit::class,
+                Produits::class,
                 CategoriesProduits::class,
                 Tags::class,
                 Boutique::class,
                 CategoriesBoutique::class
             )
-        ).waitForInitialRemoteData().build()
+        ).initialSubscriptions { realm -> add(realm.query<Boutique>())}
+            .waitForInitialRemoteData()
+            .build()
 
         realm = Realm.open(config)
 

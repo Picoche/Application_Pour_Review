@@ -9,12 +9,12 @@ import io.realm.kotlin.types.annotations.PrimaryKey
 import kotlinx.serialization.Serializable
 import org.mongodb.kbson.BsonObjectId
 import org.mongodb.kbson.ObjectId
-import com.panierdantan.models.produits.Produit as Produits
+import com.panierdantan.models.produits.Produits
 
 @Serializable
 open class Boutique(
     @PrimaryKey
-    var _id: String = "",
+    var _id: ObjectId = BsonObjectId(),
     var adresse: String = "",
     var categorieId: CategoriesBoutique? = null,
     var commercantId: User? = null,
@@ -28,7 +28,7 @@ open class Boutique(
     var rating: Double = 0.0
 ): RealmObject {
     constructor() : this(
-        _id = "",
+        _id = BsonObjectId(),
         adresse = "",
         categorieId = null,
         commercantId = null,
