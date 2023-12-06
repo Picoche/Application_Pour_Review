@@ -104,6 +104,7 @@ fun HomePage(loginViewModel: LoginViewModel, dataViewModel: DataViewModel) {
             FloatingActionButton(onClick = {
                 loginViewModel.customLogin("hombert.fabien@gmail.com", "Renouvier66")
                 dataViewModel.addShop(Boutique(BsonObjectId(), "Beverly Hills"))
+                dataViewModel.addShop(Boutique(BsonObjectId(), "Beverly Hills"))
                 dataViewModel.getShops()
             }) {
                 Icon(Icons.UserIcon, contentDescription = "Switch Users")
