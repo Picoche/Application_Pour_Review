@@ -13,7 +13,7 @@ import org.mongodb.kbson.ObjectId
 @Serializable
 open class User(
     @PrimaryKey
-    var _id: ObjectId = BsonObjectId(),
+    var _id: String = "",
     var email: String = "",
     var hash: String = "",
     var realmUserId: String = "",
@@ -22,12 +22,9 @@ open class User(
     var profilePicture: String? = "",
     var pseudo: String = "",
     var adresse: String = "",
-
-    @Serializable(RealmListKSerializer::class)
-    var boutiques: RealmList<Boutique> = realmListOf()
 ): RealmObject {
     constructor() : this(
-        _id = BsonObjectId(),
+        _id = "",
         email = "",
         hash = "",
         realmUserId = "",
@@ -36,6 +33,5 @@ open class User(
         profilePicture = "",
         pseudo = "",
         adresse = "",
-        boutiques = realmListOf()
     )
 }

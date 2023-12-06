@@ -88,7 +88,7 @@ fun HomePage(loginViewModel: LoginViewModel, dataViewModel: DataViewModel) {
                             .padding(8.dp)
                     ) {
                         Text(
-                            text = shops.toString(),
+                            text = user.email,
                             color = Color.White,
                             fontSize = 14.sp,
                             fontFamily = unboundedFamily,
@@ -103,9 +103,6 @@ fun HomePage(loginViewModel: LoginViewModel, dataViewModel: DataViewModel) {
         floatingActionButton = {
             FloatingActionButton(onClick = {
                 loginViewModel.customLogin("hombert.fabien@gmail.com", "Renouvier66")
-                dataViewModel.addShop(Boutique(BsonObjectId(), "Beverly Hills"))
-                dataViewModel.addShop(Boutique(BsonObjectId(), "Beverly Hills"))
-                dataViewModel.getShops()
             }) {
                 Icon(Icons.UserIcon, contentDescription = "Switch Users")
             }

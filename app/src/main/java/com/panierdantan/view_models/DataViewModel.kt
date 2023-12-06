@@ -26,4 +26,8 @@ class DataViewModel : ViewModel() {
             _shops.addAll(shopRepository.getShopList())
         }
     }
+
+    fun close() {
+        shopRepository.close()
+    }
 }
