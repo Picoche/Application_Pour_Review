@@ -20,6 +20,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
+import org.mongodb.kbson.BsonObjectId
 
 /**
  * Types of UX events triggered by user actions.
@@ -151,7 +152,8 @@ class LoginViewModel : ViewModel() {
                         "Connexion réussie."
                     )
                 )
-                _user.value = app.currentUser!!.customData<User>()!!
+                val user = app.currentUser!!.customData<User>()!!
+                _user.value = user
             }.onFailure { ex: Throwable ->
                 _state.value = state.value.copy(enabled = true)
                 val message = when (ex) {

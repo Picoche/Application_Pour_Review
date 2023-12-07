@@ -21,6 +21,7 @@ class DataViewModel : ViewModel() {
             shopRepository.addShop(boutique)
         }
     }
+
     fun getShops() {
         CoroutineScope(Dispatchers.IO).launch {
             _shops.addAll(shopRepository.getShopList())

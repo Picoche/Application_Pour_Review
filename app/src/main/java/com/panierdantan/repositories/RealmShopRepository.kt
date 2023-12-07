@@ -79,7 +79,6 @@ class RealmShopRepository() : ShopSyncRepository {
             .build()
 
         realm = Realm.open(config)
-        realm.close()
 
         // Mutable states must be updated on the UI thread
         CoroutineScope(Dispatchers.Main).launch {

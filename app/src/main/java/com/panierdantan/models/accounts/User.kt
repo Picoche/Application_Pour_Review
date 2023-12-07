@@ -2,6 +2,7 @@ package com.panierdantan.models.accounts
 
 import com.panierdantan.models.shops.Boutique
 import io.realm.kotlin.ext.realmListOf
+import io.realm.kotlin.serializers.RealmAnyKSerializer
 import io.realm.kotlin.serializers.RealmListKSerializer
 import io.realm.kotlin.types.RealmList
 import io.realm.kotlin.types.RealmObject
