@@ -103,6 +103,7 @@ fun HomePage(loginViewModel: LoginViewModel, dataViewModel: DataViewModel) {
         floatingActionButton = {
             FloatingActionButton(onClick = {
                 loginViewModel.customLogin("hombert.fabien@gmail.com", "Renouvier66")
+                Log.d("shops", dataViewModel.addShop(Boutique(_id = BsonObjectId(), nom = "test")).toString())
             }) {
                 Icon(Icons.UserIcon, contentDescription = "Switch Users")
             }
