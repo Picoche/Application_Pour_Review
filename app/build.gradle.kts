@@ -2,6 +2,16 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlinx-serialization")
+    id("io.realm.kotlin")
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("io.realm:realm-gradle-plugin:10.8.1")
+    }
 }
 
 android {
@@ -72,6 +82,10 @@ dependencies {
     implementation("androidx.compose.material:material:1.5.4")
     implementation(platform("androidx.compose:compose-bom:2022.10.00"))
 
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+
     implementation("io.realm.kotlin:library-base:1.11.0")
     implementation("io.realm.kotlin:library-sync:1.11.0")
     implementation("io.realm.kotlin:gradle-plugin:1.13.0")
@@ -81,3 +95,4 @@ dependencies {
 }
 
 apply(plugin = "io.realm.kotlin")
+apply(plugin = "kotlin-kapt")

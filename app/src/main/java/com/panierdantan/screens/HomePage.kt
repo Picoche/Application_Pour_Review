@@ -1,6 +1,5 @@
 package com.panierdantan.screens
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -76,7 +75,6 @@ fun HomePage(loginViewModel: LoginViewModel, dataViewModel: DataViewModel) {
     )
 
     val user = loginViewModel.user.value
-    val shops = dataViewModel.shops
 
     Scaffold(
         topBar = {
@@ -103,7 +101,6 @@ fun HomePage(loginViewModel: LoginViewModel, dataViewModel: DataViewModel) {
         floatingActionButton = {
             FloatingActionButton(onClick = {
                 loginViewModel.customLogin("hombert.fabien@gmail.com", "Renouvier66")
-                Log.d("shops", dataViewModel.addShop(Boutique(_id = BsonObjectId(), nom = "test")).toString())
             }) {
                 Icon(Icons.UserIcon, contentDescription = "Switch Users")
             }
@@ -137,8 +134,8 @@ fun HomePage(loginViewModel: LoginViewModel, dataViewModel: DataViewModel) {
                 MesBoutiquesView(
                     onClickAdd = { navController.navigate("creation_boutique") },
                     onClickBoutique = { navController.navigate("detail_boutique") },
-                    onClickQrCode = { navController.navigate("scanner") }
-
+                    onClickQrCode = { navController.navigate("scanner") },
+                    dataViewModel
                 )
             }
             composable("creation_boutique") {

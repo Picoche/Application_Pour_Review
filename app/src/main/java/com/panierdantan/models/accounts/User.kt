@@ -1,15 +1,8 @@
 package com.panierdantan.models.accounts
 
-import com.panierdantan.models.shops.Boutique
-import io.realm.kotlin.ext.realmListOf
-import io.realm.kotlin.serializers.RealmAnyKSerializer
-import io.realm.kotlin.serializers.RealmListKSerializer
-import io.realm.kotlin.types.RealmList
-import io.realm.kotlin.types.RealmObject
 import io.realm.kotlin.types.annotations.PrimaryKey
 import kotlinx.serialization.Serializable
-import org.mongodb.kbson.BsonObjectId
-import org.mongodb.kbson.ObjectId
+import io.realm.kotlin.types.RealmObject
 
 @Serializable
 open class User(

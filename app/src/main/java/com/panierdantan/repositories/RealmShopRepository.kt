@@ -13,9 +13,10 @@ import com.panierdantan.models.accounts.User as Utilisateur
 import io.realm.kotlin.mongodb.subscriptions
 import io.realm.kotlin.mongodb.sync.SyncConfiguration
 import io.realm.kotlin.mongodb.syncSession
-import io.realm.kotlin.query.Sort
+import io.realm.kotlin.notifications.ResultsChange
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 /**
@@ -65,7 +66,7 @@ class RealmShopRepository() : ShopSyncRepository {
         get() = app.currentUser!!
 
     init {
-        config = SyncConfiguration.Builder(
+        config = SyncConfiguration.create(
             currentUser, setOf(
                 Utilisateur::class,
                 Produits::class,
@@ -74,9 +75,7 @@ class RealmShopRepository() : ShopSyncRepository {
                 Boutique::class,
                 CategoriesBoutique::class
             )
-        ).initialSubscriptions { realm -> add(realm.query<Boutique>())}
-            .waitForInitialRemoteData()
-            .build()
+        )
 
         realm = Realm.open(config)
 
@@ -86,8 +85,8 @@ class RealmShopRepository() : ShopSyncRepository {
         }
     }
 
-    override fun getShopList(): Collection<Boutique> {
-        return realm.query<Boutique>().sort("nom", Sort.ASCENDING).find()
+    override fun getShopList(): List<Boutique> {
+        return realm.query<Boutique>().find()
     }
 
     override suspend fun addShop(boutique: Boutique) {

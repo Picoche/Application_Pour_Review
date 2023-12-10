@@ -1,5 +1,6 @@
 package com.panierdantan.screens.commercant.shops.components
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -33,15 +34,17 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.panierdantan.R
+import com.panierdantan.models.shops.Boutique
 import com.panierdantan.screens.commercant.shops.unboundedFamily
 import com.panierdantan.screens.robotoFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CardBoutique(onClickBoutique: () -> Unit) {
+fun CardBoutique(onClickBoutique: () -> Unit, boutique: Boutique) {
+    Log.d("CardBoutique", "CardBoutique: ${boutique.nom}")
     Box(modifier = Modifier.fillMaxSize()) {
         Card(
-            onClick = {onClickBoutique ()},
+            onClick = { onClickBoutique() },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(0.dp)
@@ -56,7 +59,7 @@ fun CardBoutique(onClickBoutique: () -> Unit) {
                     painter = painterResource(id = R.drawable.boutique),
                     contentDescription = null,
                     modifier = Modifier
-                        .padding(start= 10.dp,top=10.dp,bottom=10.dp)
+                        .padding(start = 10.dp, top = 10.dp, bottom = 10.dp)
                         .height(170.dp)
                         .width(100.dp)
                         .clip(RoundedCornerShape(8.dp)) // Arrondir les coins de l'image
@@ -69,16 +72,21 @@ fun CardBoutique(onClickBoutique: () -> Unit) {
                         .padding(10.dp)
                 ) {
                     Text(
-                        text = "Boucherie Maison Raymond",
+                        text = boutique.nom,
                         textAlign = TextAlign.Center,
                         fontFamily = unboundedFamily,
                         fontWeight = FontWeight.Bold,
                         color = Color(0xffffffff),
                         fontSize = 18.sp
                     )
-                    Column(horizontalAlignment = Alignment.End, modifier = Modifier.fillMaxSize().padding(end = 10.dp)) {
+                    Column(
+                        horizontalAlignment = Alignment.End,
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(end = 10.dp)
+                    ) {
                         Text(
-                            text = "12 rue François Thomières",
+                            text = boutique.adresse,
                             textAlign = TextAlign.End,
                             fontFamily = robotoFamily,
                             fontWeight = FontWeight.Bold,
@@ -96,7 +104,7 @@ fun CardBoutique(onClickBoutique: () -> Unit) {
                                 tint = Color.White
                             )
                             Text(
-                                text = "05 63 72 62 80",
+                                text = boutique.numTel,
                                 textAlign = TextAlign.End,
                                 fontFamily = robotoFamily,
                                 fontWeight = FontWeight.Bold,
@@ -106,16 +114,13 @@ fun CardBoutique(onClickBoutique: () -> Unit) {
                             )
                         }
                         Text(
-                            text = "ouvert du lundi au samedi",
+                            text = boutique.openDays,
                             textAlign = TextAlign.End,
                             fontFamily = robotoFamily,
                             fontWeight = FontWeight.Bold,
                             color = Color(0xffffffff),
                             fontSize = 14.sp
                         )
-
-
-
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.spacedBy(4.dp), // Espace entre les étoiles
@@ -137,10 +142,9 @@ fun CardBoutique(onClickBoutique: () -> Unit) {
                                     .border(0.2.dp, Color.Gray, shape = RoundedCornerShape(100.dp))
                             ) {
                                 Text(
-                                    text = "13",
+                                    text = boutique.nbOfRating.toString(),
                                     color = Color.White,
                                     modifier = Modifier.align(Alignment.Center)
-
                                 )
                             }
                         }
@@ -149,5 +153,4 @@ fun CardBoutique(onClickBoutique: () -> Unit) {
             }
         }
     }
-
 }
